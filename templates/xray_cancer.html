@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+{% block content  %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col text-center">
+    <h2>X-Ray Test for Breast Cancer</h2>
+    {% if form %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.file.errors }}
+        {{ form.file.label_tag }}
+        {{ form.file }}
+        <button class="btn btn-dark" type="submit">Check</button>
+    </form>
+    {% else %}
+        {% if result == 1 %}
+        <div class="alert alert-danger" role="alert"><p>We found that tumor is <div style="font-family: 'Dosis:700', sans-serif;">malignant</div></p></div>
+        {% else %}
+        <div class="alert alert-success" role="alert"><p>We found that tumor is <div style="font-family: 'Dosis:700', sans-serif;">benign</div></p></div>
+        {% endif %}
+    {% endif %}
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+
+{% endblock %}

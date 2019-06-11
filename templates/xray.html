@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+{% block content  %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col text-center">
+    <h2>X-Ray Test for Pneumonia</h2>
+    {% if form %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.file.errors }}
+        {{ form.file.label_tag }}
+        {{ form.file }}
+        <button class="btn btn-dark" type="submit">Check</button>
+    </form>
+    {% else %}
+        {% if result == 1 %}
+        <div class="alert alert-danger" role="alert"><p>Our AI model suspected that you have pneumonia, please consult with your doctor</p></div>
+        {% else %}
+        <div class="alert alert-success" role="alert"><p>Our AI model did not detect signs of pneumonia</p></div>
+        {% endif %}
+    {% endif %}
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+
+{% endblock %}

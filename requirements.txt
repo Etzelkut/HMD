@@ -1,0 +1,6 @@
+django-bootstrap-form
+torch
+torchvision
+Pillow
+psycopg2
+sklearn

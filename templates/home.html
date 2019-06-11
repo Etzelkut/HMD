@@ -1,0 +1,33 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container-fluid h-100">
+  <div class="row justify-content-center h-100">
+    <div class="col"></div>
+    <div class="col text-center align-self-center jumbotron">
+    <h5>Welcome, {{user.username}}! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Platea dictumst quisque sagittis purus. Aliquet sagittis id consectetur purus ut faucibus. Turpis egestas sed tempus urna et pharetra pharetra massa massa. In arcu cursus euismod quis viverra nibh cras pulvinar mattis.</h5>
+    <h5>Here you can check previous or enter new analysis results in Analysis section, give Your X-Ray shot to AI for analysing or take survey for predicting illness</h5>
+    <h5>Go on and try something!</h5>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+{% else %}
+<div class="container-fluid h-100">
+  <div class="row justify-content-center h-100">
+    <div class="col"></div>
+    <div class="col text-center align-self-center jumbotron">
+    <h1> HMD - AI Guarding Your Health </h1>
+    <h5 style="margin-top:25px; margin-bottom:25px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Platea dictumst quisque sagittis purus. Aliquet sagittis id consectetur purus ut faucibus. Turpis egestas sed tempus urna et pharetra pharetra massa massa. In arcu cursus euismod quis viverra nibh cras pulvinar mattis.</h5>
+      <a class="btn btn-outline-dark btn-lg btnHome" href="{% url 'login' %}">Login</a> 
+      <a class="btn btn-outline-dark btn-lg btnHome" href="{% url 'signup' %}">Sign Up</a>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

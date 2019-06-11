@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+{% block content  %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col text-center">
+    <h2>Survey</h2>
+    {% if info %}
+    <div class="card">
+      <div class="card-body">
+        {{ info }}
+      </div>
+    </div>
+    {% endif %}
+    {% if form %}
+    <p>{{ question }}</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form | bootstrap }}
+        <input type="hidden" id="id" name="id" value="{{ id }}">
+        <button class="btn btn-dark" type="submit">Submit</button>
+    </form>
+    {% elif diagnosis %}
+        <div class="alert alert-danger text-center" role="alert"><p>{{ diagnosis }}, please consult with your doctor</p></div>
+    {% endif %}
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+
+{% endblock %}

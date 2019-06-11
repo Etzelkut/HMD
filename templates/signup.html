@@ -1,0 +1,22 @@
+<!-- templates/signup.html -->
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">
+      <h2 class="text-center">Sign up</h2>
+      <form method="post">
+        {% csrf_token %}
+        {{ form | bootstrap}}
+        <div class="row justify-content-center">
+          <button class="btn btn-dark text-center" type="submit">Sign up</button>
+        </div>
+      </form>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+{% endblock %}
+

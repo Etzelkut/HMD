@@ -1,0 +1,59 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+  {% load static %}
+  <title>{% block title %}HMD{% endblock %}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
+  <script src="https://kit.fontawesome.com/f767e11e3a.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Dosis:400,700&display=swap" rel="stylesheet"> 
+  <link rel="stylesheet" type="text/css" href={% static 'css/style.css' %}>
+</head>
+<body>
+ <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+    <a class="navbar-brand" href="/">{% if user.is_authenticated %}     
+<i class="fa fa-heart"></i>{% else %}<i class="far fa-heart"></i>{% endif %} <h4 style="display:inline;">HMD</h4></a>
+    {% if user.is_authenticated %}     
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/analysis"><i class="fas fa-file-medical"></i> Analysis</a>
+      </li>
+       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-x-ray"></i>X-Ray
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/xray">Pneumonia</a>
+          <a class="dropdown-item" href="/xray/cancer">Breast Cancer</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/survey"><i class="fas fa-comment-medical"></i> Survey</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" style="display:flex;align-items:center;">
+    <li class="nav-item text-light" style="margin-right:20px">
+      <h5 class="text-center align-center">Welcome, {{ user.username }}!</h5>      
+    </li>
+    <li class="nav-item">
+    <a class="btn btn-outline-light btn-lg text-light" href="{% url 'logout' %}">Log Out</a>
+    </li>
+    </ul>
+    {% endif %}
+  </nav> 
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+</body>
+</html>

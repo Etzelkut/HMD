@@ -2,9 +2,10 @@ import torch
 import torchvision
 from torchvision import transforms
 import PIL
-import io
+import io, os
 import torch.nn as nn
 device = torch.device('cpu')
+from django.conf import settings
 #'cuda:0' if torch.cuda.is_available() else
 TheModelClass2 = torchvision.models.resnet152(pretrained=True)
 
@@ -27,7 +28,7 @@ TheModelClass2 = TheModelClass2.to(device)
 
 
 model2 = TheModelClass2
-model2.load_state_dict(torch.load("/home/usernamemeow/HMD/xray/model2.pth", map_location='cpu'))
+model2.load_state_dict(torch.load(os.path.join(settings.BASE_DIR, "xray/model2.pth"), map_location='cpu'))
 model2.eval()
 model2 = model2.to(device)
 
